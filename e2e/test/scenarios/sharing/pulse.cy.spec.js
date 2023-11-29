@@ -2,7 +2,8 @@ import { restore, setupSMTP, popover } from "e2e/support/helpers";
 
 import { ORDERS_COUNT_QUESTION_ID } from "e2e/support/cypress_sample_instance_data";
 
-describe("scenarios > pulse", { tags: "@external" }, () => {
+// skipping since this is getting deleted in v49: see #35843
+describe.skip("scenarios > pulse", { tags: "@external" }, () => {
   beforeEach(() => {
     restore();
     cy.signInAsAdmin();
