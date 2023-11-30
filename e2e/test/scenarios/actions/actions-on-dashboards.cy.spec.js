@@ -990,6 +990,7 @@ describe("action error handling", { tags: ["@external", "@actions"] }, () => {
     });
 
     cy.intercept("GET", "/api/action").as("getActions");
+    cy.intercept("GET", /\/api\/card\/\d+/).as("getModel");
     cy.intercept("GET", "/api/dashboard/*/dashcard/*/execute?parameters=*").as(
       "prefetchValues",
     );
@@ -1265,6 +1266,8 @@ function createDashboardWithActionButton({
   });
 
   saveDashboard();
+
+  cy.wait("@getModel");
 }
 
 const changeValue = ({ fieldName, fieldType, oldValue, newValue }) => {
