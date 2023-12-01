@@ -492,6 +492,10 @@ const MODEL_NAME = "Test Action Model";
               idFilter: true,
             });
 
+            cy.wait("@getModel");
+
+            cy.findByRole("button", { name: "Update" });
+
             filterWidget().click();
             addWidgetStringFilter("1");
 
@@ -1266,8 +1270,6 @@ function createDashboardWithActionButton({
   });
 
   saveDashboard();
-
-  cy.wait("@getModel");
 }
 
 const changeValue = ({ fieldName, fieldType, oldValue, newValue }) => {
