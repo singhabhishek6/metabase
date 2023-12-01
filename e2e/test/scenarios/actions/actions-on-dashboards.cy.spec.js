@@ -493,7 +493,6 @@ const MODEL_NAME = "Test Action Model";
             });
 
             cy.wait("@getModel");
-
             cy.findByRole("button", { name: "Update" });
 
             filterWidget().click();
@@ -708,6 +707,9 @@ const MODEL_NAME = "Test Action Model";
               actionName: "Update",
               idFilter: true,
             });
+
+            cy.wait("@getModel");
+            cy.findByRole("button", { name: "Update" });
 
             filterWidget().click();
             addWidgetStringFilter("1");
@@ -1082,6 +1084,9 @@ describe(
           actionName,
           idFilter: true,
         });
+
+        cy.wait("@getModel");
+        cy.findByRole("button", { name: "Update" });
 
         filterWidget().click();
         addWidgetStringFilter("5");
