@@ -63,7 +63,7 @@ jobs:
       uses: ./.github/actions/test-driver
       with:
         junit-name: 'be-tests-athena-ee'
-        test-args: ":only ${{ inputs.test }}"
+        test-args: ":only ${{ inputs.test }} :times ${{ inputs.times }}"
 
   be-tests-bigquery-cloud-sdk-ee:
     if: inputs.driver == 'BigQuery'
@@ -84,7 +84,7 @@ jobs:
       uses: ./.github/actions/test-driver
       with:
         junit-name: 'be-tests-bigquery-cloud-sdk-ee'
-        test-args: ":only ${{ inputs.test }}"
+        test-args: ":only ${{ inputs.test }} :times ${{ inputs.times }}"
 
   be-tests-druid-ee:
     if: inputs.driver == 'Druid'
@@ -106,7 +106,7 @@ jobs:
       uses: ./.github/actions/test-driver
       with:
         junit-name: 'be-tests-druid-ee'
-        test-args: ":only ${{ inputs.test }}"
+        test-args: ":only ${{ inputs.test }} :times ${{ inputs.times }}"
 
   be-tests-googleanalytics-ee:
     if: inputs.driver == 'Google Analytics'
@@ -121,7 +121,7 @@ jobs:
       uses: ./.github/actions/test-driver
       with:
         junit-name: 'be-tests-googleanalytics-ee'
-        test-args: ":only ${{ inputs.test }}"
+        test-args: ":only ${{ inputs.test }} :times ${{ inputs.times }}"
 
   be-google-related-drivers-classpath-test:
     if: inputs.driver == 'Google Classpath Test'
@@ -142,7 +142,7 @@ jobs:
       uses: ./.github/actions/test-driver
       with:
         junit-name: 'be-google-related-drivers-classpath-test'
-        test-args: ':only "[metabase.query-processor-test.expressions-test metabase.driver.google-test metabase.driver.googleanalytics-test ${{ inputs.test }}]"'
+        test-args: ':only "[metabase.query-processor-test.expressions-test metabase.driver.google-test metabase.driver.googleanalytics-test ${{ inputs.test }}] :times ${{ inputs.times }}"'
 
   be-tests-mariadb-10-2-ee:
     if: inputs.driver == 'Maria DB'
@@ -168,7 +168,7 @@ jobs:
       uses: ./.github/actions/test-driver
       with:
         junit-name: 'be-tests-mariadb-10-2-ee'
-        test-args: ":only ${{ inputs.test }}"
+        test-args: ":only ${{ inputs.test }} :times ${{ inputs.times }}"
 
   be-tests-mariadb-latest-ee:
     if: inputs.driver == 'Maria DB (latest)'
@@ -194,7 +194,7 @@ jobs:
       uses: ./.github/actions/test-driver
       with:
         junit-name: 'be-tests-mariadb-latest-ee'
-        test-args: ":only ${{ inputs.test }}"
+        test-args: ":only ${{ inputs.test }} :times ${{ inputs.times }}"
 
   be-tests-mongo-4-4-ee:
     if: inputs.driver == 'Mongo 4'
@@ -216,7 +216,7 @@ jobs:
       uses: ./.github/actions/test-driver
       with:
         junit-name: 'be-tests-mongo-4-4-ee'
-        test-args: ":only ${{ inputs.test }}"
+        test-args: ":only ${{ inputs.test }} :times ${{ inputs.times }}"
 
   be-tests-mongo-4-4-ssl-ee:
     if: inputs.driver == 'Mongo 4 (SSL)'
@@ -250,7 +250,7 @@ jobs:
         uses: ./.github/actions/test-driver
         with:
           junit-name: 'be-tests-mongo-4-4-ee'
-          test-args: ":only ${{ inputs.test }}"
+          test-args: ":only ${{ inputs.test }} :times ${{ inputs.times }}"
 
   be-tests-mongo-5-0-ee:
     if: inputs.driver == 'Mongo 5'
@@ -272,7 +272,7 @@ jobs:
       uses: ./.github/actions/test-driver
       with:
         junit-name: 'be-tests-mongo-5-0-ee'
-        test-args: ":only ${{ inputs.test }}"
+        test-args: ":only ${{ inputs.test }} :times ${{ inputs.times }}"
 
   be-tests-mongo-5-0-ssl-ee:
     if: inputs.driver == 'Mongo 5 (SSL)'
@@ -306,7 +306,7 @@ jobs:
       uses: ./.github/actions/test-driver
       with:
         junit-name: 'be-tests-mongo-5-0-ee'
-        test-args: ":only ${{ inputs.test }}"
+        test-args: ":only ${{ inputs.test }} :times ${{ inputs.times }}"
 
   be-tests-mongo-latest-ee:
     if: inputs.driver == 'Mongo (latest)'
@@ -331,7 +331,7 @@ jobs:
       uses: ./.github/actions/test-driver
       with:
         junit-name: 'be-tests-mongo-latest-ee'
-        test-args: ":only ${{ inputs.test }}"
+        test-args: ":only ${{ inputs.test }} :times ${{ inputs.times }}"
 
   be-tests-mysql-8-0-ee:
     if: inputs.driver == 'MySQL'
@@ -357,7 +357,7 @@ jobs:
       uses: ./.github/actions/test-driver
       with:
         junit-name: 'be-tests-mysql-8-0-ee'
-        test-args: ":only ${{ inputs.test }}"
+        test-args: ":only ${{ inputs.test }} :times ${{ inputs.times }}"
 
   be-tests-mysql-latest-ee:
     if: inputs.driver == 'MySQL (latest)'
@@ -395,7 +395,7 @@ jobs:
       uses: ./.github/actions/test-driver
       with:
         junit-name: 'be-tests-mysql-latest-ee'
-        test-args: ":only ${{ inputs.test }}"
+        test-args: ":only ${{ inputs.test }} :times ${{ inputs.times }}"
 
   be-tests-oracle-18-4-ee:
     if: inputs.driver == 'Oracle 18'
@@ -421,7 +421,7 @@ jobs:
       uses: ./.github/actions/test-driver
       with:
         junit-name: 'be-tests-oracle-18-4-ee'
-        test-args: ":only ${{ inputs.test }}"
+        test-args: ":only ${{ inputs.test }} :times ${{ inputs.times }}"
 
   be-tests-oracle-21-3-ee:
     if: inputs.driver == 'Oracle 21'
@@ -456,7 +456,7 @@ jobs:
       uses: ./.github/actions/test-driver
       with:
         junit-name: 'be-tests-oracle-21-3-ee'
-        test-args: ":only ${{ inputs.test }}"
+        test-args: ":only ${{ inputs.test }} :times ${{ inputs.times }}"
 
   be-tests-postgres-ee:
     if: inputs.driver == 'Postgres'
@@ -486,7 +486,7 @@ jobs:
       uses: ./.github/actions/test-driver
       with:
         junit-name: 'be-tests-postgres-ee'
-        test-args: ":only ${{ inputs.test }}"
+        test-args: ":only ${{ inputs.test }} :times ${{ inputs.times }}"
 
   be-tests-postgres-latest-ee:
     if: inputs.driver == 'Postgres (latest)'
@@ -519,7 +519,7 @@ jobs:
       uses: ./.github/actions/test-driver
       with:
         junit-name: 'be-tests-postgres-latest-ee'
-        test-args: ":only ${{ inputs.test }}"
+        test-args: ":only ${{ inputs.test }} :times ${{ inputs.times }}"
 
   be-tests-presto-jdbc-ee:
     if: inputs.driver == 'Presto JDBC'
@@ -568,7 +568,7 @@ jobs:
       uses: ./.github/actions/test-driver
       with:
         junit-name: 'be-tests-presto-jdbc-ee'
-        test-args: ":only ${{ inputs.test }}"
+        test-args: ":only ${{ inputs.test }} :times ${{ inputs.times }}"
 
   be-tests-redshift-ee:
     if: inputs.driver == 'Redshift'
@@ -587,7 +587,7 @@ jobs:
       uses: ./.github/actions/test-driver
       with:
         junit-name: 'be-tests-redshift-ee'
-        test-args: ":only ${{ inputs.test }}"
+        test-args: ":only ${{ inputs.test }} :times ${{ inputs.times }}"
 
   be-tests-snowflake-ee:
     if: inputs.driver == 'Snowflake'
@@ -608,7 +608,7 @@ jobs:
       uses: ./.github/actions/test-driver
       with:
         junit-name: 'be-tests-snowflake-ee'
-        test-args: ":only ${{ inputs.test }}"
+        test-args: ":only ${{ inputs.test }} :times ${{ inputs.times }}"
 
   be-tests-sparksql-ee:
     if: inputs.driver == 'SparkSQL'
@@ -628,7 +628,7 @@ jobs:
       uses: ./.github/actions/test-driver
       with:
         junit-name: 'be-tests-sparksql-ee'
-        test-args: ":only ${{ inputs.test }}"
+        test-args: ":only ${{ inputs.test }} :times ${{ inputs.times }}"
 
   be-tests-sqlite-ee:
     if: inputs.driver == 'SQLite'
@@ -643,7 +643,7 @@ jobs:
       uses: ./.github/actions/test-driver
       with:
         junit-name: 'be-tests-sqlite-ee'
-        test-args: ":only ${{ inputs.test }}"
+        test-args: ":only ${{ inputs.test }} :times ${{ inputs.times }}"
 
   be-tests-sqlserver-2017-ee:
     if: inputs.driver == 'SQL Server 2017'
@@ -670,7 +670,7 @@ jobs:
       uses: ./.github/actions/test-driver
       with:
         junit-name: 'be-tests-sqlserver-ee'
-        test-args: ":only ${{ inputs.test }}"
+        test-args: ":only ${{ inputs.test }} :times ${{ inputs.times }}"
 
   be-tests-sqlserver-2022-ee:
     if: inputs.driver == 'SQL Server 2022'
@@ -697,7 +697,7 @@ jobs:
       uses: ./.github/actions/test-driver
       with:
         junit-name: 'be-tests-sqlserver-2022-ee'
-        test-args: ":only ${{ inputs.test }}"
+        test-args: ":only ${{ inputs.test }} :times ${{ inputs.times }}"
 
   be-tests-vertica-ee:
     if: inputs.driver == 'Vertica'
@@ -719,4 +719,4 @@ jobs:
       uses: ./.github/actions/test-driver
       with:
         junit-name: 'be-tests-vertica-ee'
-        test-args: ":only ${{ inputs.test }}"
+        test-args: ":only ${{ inputs.test }} :times ${{ inputs.times }}"

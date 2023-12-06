@@ -95,5 +95,8 @@
 (defn find-and-run-tests-cli
   "Entrypoint for `clojure -X:test`."
   [options]
-  (dotimes [_ (or (:times options) 1)]
-    (hawk/find-and-run-tests-cli (merge (default-options) options))))
+  (let [options (if (:times options)
+                  (assoc options :mode :repl)
+                  options)]
+    (dotimes [_ (or (:times options) 1)]
+      (hawk/find-and-run-tests-cli (merge (default-options) options)))))
