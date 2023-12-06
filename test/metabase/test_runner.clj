@@ -99,4 +99,6 @@
                   (assoc options :mode :repl)
                   options)]
     (dotimes [_ (or (:times options) 1)]
-      (hawk/find-and-run-tests-cli (merge (default-options) options)))))
+      (hawk/find-and-run-tests-cli (merge (default-options) options)))
+    (when (:times options)
+      (System/exit 0))))
