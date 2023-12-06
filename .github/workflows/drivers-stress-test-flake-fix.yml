@@ -7,6 +7,10 @@ on:
         description: 'The exact test name with its namespace.'
         type: string
         required: true
+      times:
+        description: 'The number of times to run the test(s).'
+        type: number
+        required: false
       driver:
         description: 'The driver against which you want to run this test.'
         required: true
