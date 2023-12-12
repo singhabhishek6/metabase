@@ -54,19 +54,20 @@
 
 (defmethod driver/display-name :mysql [_] "MySQL")
 
-(doseq [[feature supported?] {:persist-models          true
-                              :convert-timezone        true
-                              :datetime-diff           true
-                              :now                     true
-                              :regex                   false
-                              :percentile-aggregations false
-                              :full-join               false
-                              :uploads                 true
-                              :schemas                 false
+(doseq [[feature supported?] {:persist-models                         true
+                              :convert-timezone                       true
+                              :datetime-diff                          true
+                              :now                                    true
+                              :regex                                  false
+                              :percentile-aggregations                false
+                              :full-join                              false
+                              :uploads                                true
+                              :schemas                                false
                               ;; MySQL LIKE clauses are case-sensitive or not based on whether the collation of the server and the columns
                               ;; themselves. Since this isn't something we can really change in the query itself don't present the option to the
                               ;; users in the UI
-                              :case-sensitivity-string-filter-options false}]
+                              :case-sensitivity-string-filter-options false
+                              :index-info                             true}]
   (defmethod driver/database-supports? [:mysql feature] [_driver _feature _db] supported?))
 
 ;; This is a bit of a lie since the JSON type was introduced for MySQL since 5.7.8.
@@ -473,7 +474,7 @@
     :TINYTEXT   :type/Text
     :VARBINARY  :type/*
     :VARCHAR    :type/Text
-    :YEAR       :type/Date
+    :YEAR       :type/Integer
     :JSON       :type/JSON}
    ;; strip off " UNSIGNED" from end if present
    (keyword (str/replace (name database-type) #"\sUNSIGNED$" ""))))
@@ -604,12 +605,15 @@
         (catch Throwable _
           (.getString rs i))))))
 
+;; Mysql 8.1+ returns results of YEAR(..) function having a YEAR type. In Mysql 8.0.33, return value of that function
+;; has an integral type. Let's make the returned values consistent over mysql versions.
+;; Context: https://dev.mysql.com/doc/connector-j/en/connector-j-YEAR.html
 (defmethod sql-jdbc.execute/read-column-thunk [:mysql Types/DATE]
   [driver ^ResultSet rs ^ResultSetMetaData rsmeta ^Integer i]
   (if (= "YEAR" (.getColumnTypeName rsmeta i))
     (fn read-time-thunk []
       (when-let [x (.getObject rs i)]
-        (.toLocalDate ^java.sql.Date x)))
+        (.getYear (.toLocalDate ^java.sql.Date x))))
     (let [parent-thunk ((get-method sql-jdbc.execute/read-column-thunk [:sql-jdbc Types/DATE]) driver rs rsmeta i)]
       parent-thunk)))
 
@@ -645,9 +649,7 @@
     ::upload/varchar-255              [[:varchar 255]]
     ::upload/text                     [:text]
     ::upload/int                      [:bigint]
-    ::upload/int-pk                   [:bigint :primary-key]
     ::upload/auto-incrementing-int-pk [:bigint :not-null :auto-increment :primary-key]
-    ::upload/string-pk                [[:varchar 255] :primary-key]
     ::upload/float                    [:double]
     ::upload/boolean                  [:boolean]
     ::upload/date                     [:date]
@@ -671,7 +673,7 @@
   to calculate one by hand."
   [driver database ^OffsetDateTime offset-time]
   (let [zone-id (t/zone-id (driver/db-default-timezone driver database))]
-    (t/local-date-time offset-time zone-id )))
+    (t/local-date-time offset-time zone-id)))
 
 (defmulti ^:private value->string
   "Convert a value into a string that's safe for insertion"
@@ -681,6 +683,10 @@
 (defmethod value->string :default
   [_driver val]
   (str val))
+
+(defmethod value->string nil
+  [_driver _val]
+  nil)
 
 (defmethod value->string Boolean
   [_driver val]
@@ -712,10 +718,12 @@
   ;; you must specify two backslashes for the value to be interpreted as a single backslash. The escape sequences
   ;; '\t' and '\n' specify tab and newline characters, respectively.
   [v]
-  (str/replace v #"\\|\n|\r|\t" {"\\" "\\\\"
-                                 "\n" "\\n"
-                                 "\r" "\\r"
-                                 "\t" "\\t"}))
+  (if (nil? v)
+    "\\N"
+    (str/replace v #"\\|\n|\r|\t" {"\\" "\\\\"
+                                   "\n" "\\n"
+                                   "\r" "\\r"
+                                   "\t" "\\t"})))
 
 (defn- row->tsv
   [driver column-count row]

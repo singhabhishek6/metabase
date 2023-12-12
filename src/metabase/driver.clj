@@ -319,6 +319,12 @@
   dispatch-on-initialized-driver
   :hierarchy #'hierarchy)
 
+(defmulti describe-table-indexes
+  "Returns a set of field names that are either indexed or are the first columns in a composite index."
+  {:added "0.49.0" :arglists '([driver database table])}
+  dispatch-on-initialized-driver
+  :hierarchy #'hierarchy)
+
 (defmulti escape-entity-name-for-metadata
   "escaping for when calling `.getColumns` or `.getTables` on table names or schema names. Useful for when a database
   driver has difference escaping rules for table or schema names when used from metadata.
@@ -535,7 +541,10 @@
     :connection-impersonation-requires-role
 
     ;; Does the driver require specifying a collection (table) for native queries? (mongo)
-    :native-requires-specified-collection})
+    :native-requires-specified-collection
+
+    ;; Does the driver support column(s) support storing index info
+    :index-info})
 
 
 (defmulti supports?
@@ -898,7 +907,7 @@
   :hierarchy #'hierarchy)
 
 (defmulti insert-into!
-  "Insert `values` into a table named `table-name`. `values` is a sequence of rows, where each row's order matches
+  "Insert `values` into a table named `table-name`. `values` is a lazy sequence of rows, where each row's order matches
    `column-names`."
   {:added "0.47.0", :arglists '([driver db-id table-name column-names values])}
   dispatch-on-initialized-driver

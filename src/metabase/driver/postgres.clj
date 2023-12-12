@@ -54,6 +54,9 @@
 
 (driver/register! :postgres, :parent :sql-jdbc)
 
+(defmethod driver/display-name :postgres [_] "PostgreSQL")
+
+;; Features that are supported by Postgres and all of its child drivers like Redshift
 (doseq [[feature supported?] {:convert-timezone         true
                               :datetime-diff            true
                               :now                      true
@@ -66,19 +69,14 @@
   [_driver _feat db]
   (driver.common/json-unfolding-default db))
 
-;;; +----------------------------------------------------------------------------------------------------------------+
-;;; |                                             metabase.driver impls                                              |
-;;; +----------------------------------------------------------------------------------------------------------------+
-
-(defmethod driver/display-name :postgres [_] "PostgreSQL")
-
+;; Features that are supported by postgres only
 (doseq [feature [:actions
                  :actions/custom
                  :table-privileges
-                 :uploads]]
+                 :uploads
+                 :index-info]]
   (defmethod driver/database-supports? [:postgres feature]
     [driver _feat _db]
-    ;; only supported for Postgres for right now. Not supported for child drivers like Redshift or whatever.
     (= driver :postgres)))
 
 ;;; +----------------------------------------------------------------------------------------------------------------+
@@ -784,9 +782,7 @@
     ::upload/varchar-255              [[:varchar 255]]
     ::upload/text                     [:text]
     ::upload/int                      [:bigint]
-    ::upload/int-pk                   [:bigint :primary-key]
-    ::upload/auto-incrementing-int-pk [:bigserial]
-    ::upload/string-pk                [[:varchar 255] :primary-key]
+    ::upload/auto-incrementing-int-pk [:bigserial :primary-key]
     ::upload/float                    [:float]
     ::upload/boolean                  [:boolean]
     ::upload/date                     [:date]
