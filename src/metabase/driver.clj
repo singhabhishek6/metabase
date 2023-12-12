@@ -583,8 +583,9 @@
     (database-supports? :mongo :set-timezone mongo-db) ; -> true"
   {:arglists '([driver feature database]), :added "0.41.0"}
   (fn [driver feature _database]
-    (when-not (driver-features feature)
-      (throw (Exception. (tru "Invalid driver feature: {0}" feature))))
+    (when (and (not (driver-features feature))
+               (not (namespace feature)))
+      (throw (ex-info (tru "Invalid driver feature: {0}" feature) {:feature feature})))
     [(dispatch-on-initialized-driver driver) feature])
   :hierarchy #'hierarchy)
 

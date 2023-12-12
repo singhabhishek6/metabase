@@ -368,7 +368,9 @@
 (defn- date-trunc [unit expr] [:date_trunc (h2x/literal unit) expr])
 (defn- extract [unit expr] [::h2x/extract unit expr])
 
-(def ^:private extract-integer (comp h2x/->integer extract))
+(defn- extract-integer [unit expr]
+  (-> (extract unit expr)
+      (h2x/with-database-type-info "integer")))
 
 (defmethod sql.qp/date [:h2 :default]          [_ _ expr] expr)
 (defmethod sql.qp/date [:h2 :second-of-minute] [_ _ expr] (extract-integer :second expr))
