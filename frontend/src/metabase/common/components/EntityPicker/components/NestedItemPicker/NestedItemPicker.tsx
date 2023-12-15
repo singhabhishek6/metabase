@@ -10,7 +10,6 @@ interface NestedItemPickerProps<FolderType, ItemType> {
   onFolderSelect: (folder?: FolderType) => Promise<any[]>;
   onItemSelect: (item: ItemType) => void;
   folderModel: string;
-  itemModel: string;
   initialState?: PickerState<FolderType | ItemType>;
 }
 
