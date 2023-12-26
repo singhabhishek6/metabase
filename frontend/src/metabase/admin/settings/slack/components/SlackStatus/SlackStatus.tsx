@@ -41,6 +41,7 @@ const SlackStatus = ({
   }, []);
 
   const docsUrl = useMemo(() => {
+    // XXX: Admin settings in `/admin/settings/slack`
     return Settings.docsUrl("configuring-metabase/slack");
   }, []);
 

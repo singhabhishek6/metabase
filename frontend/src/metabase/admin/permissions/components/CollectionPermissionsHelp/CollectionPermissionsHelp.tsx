@@ -39,6 +39,7 @@ export const CollectionPermissionsHelp = () => (
     <Text component="footer" align="center" py={24} weight={600}>
       {jt`${(
         <ExternalLink
+          // XXX: Admin settings in `/admin/permissions/collections`
           href={MetabaseSettings.docsUrl("permissions/collections")}
         >{t`Learn more`}</ExternalLink>
       )} about collection permissions`}

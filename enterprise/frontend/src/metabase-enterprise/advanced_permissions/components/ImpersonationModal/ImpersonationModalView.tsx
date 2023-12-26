@@ -77,6 +77,7 @@ export const ImpersonationModalView = ({
         {t`When the person runs a query (including native queries), Metabase will impersonate the privileges of the database role you associate with the user attribute.`}{" "}
         <ExternalLink
           className="link"
+          // XXX: Admin settings "Permissions" > "Data" > "Databases" `/admin/permissions/data/database/2/impersonated/group/3`
           href={MetabaseSettings.docsUrl("permissions/data")}
         >{t`Learn More`}</ExternalLink>
       </ImpersonationDescription>

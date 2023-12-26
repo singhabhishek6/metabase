@@ -20,6 +20,7 @@ interface StateProps {
 type SettingsLicenseProps = StateProps;
 
 const mapStateToProps = (state: State): StateProps => ({
+  // XXX: Admin settings for OSS `/admin/settings/license`
   upgradeUrl: getUpgradeUrl(state, { utm_media: "license" }),
 });
 

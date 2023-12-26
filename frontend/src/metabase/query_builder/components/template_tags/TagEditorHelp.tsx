@@ -309,6 +309,7 @@ export const TagEditorHelp = ({
 
       <p className="pt2 link">
         <ExternalLink
+          // XXX: https://www.notion.so/metabase/Tech-Remove-Metabase-links-outside-of-admin-settings-f88ff0fa8f574d6393c6fe5a15911b0a?pvs=4#b0f7a5af59514b60b59a0addb5ca2d17
           href={MetabaseSettings.docsUrl(
             "questions/native-editor/sql-parameters",
           )}

@@ -33,6 +33,7 @@ export const EmptyFormPlaceholder = () => (
       </ExplainerList>
     </ExplainerText>
     <ExplainerLink
+      // XXX: https://www.notion.so/metabase/Tech-Remove-Metabase-links-outside-of-admin-settings-f88ff0fa8f574d6393c6fe5a15911b0a?pvs=4#768bddeae8014b57a3a68e69370c6041
       href={MetabaseSettings.docsUrl("actions/custom")}
     >{t`See an example`}</ExplainerLink>
   </EmptyFormPlaceholderWrapper>

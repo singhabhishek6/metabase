@@ -25,6 +25,7 @@ const PreviewQueryModal = ({
   const { query, error, isLoading } = useNativeQuery(question, () =>
     onLoadQuery({ pretty: false }),
   );
+  // XXX: https://www.notion.so/metabase/Tech-Remove-Metabase-links-outside-of-admin-settings-f88ff0fa8f574d6393c6fe5a15911b0a?pvs=4#9087a79fa2ca4d1091ef6c01886668f9
   const learnUrl = MetabaseSettings.learnUrl("debugging-sql/sql-syntax");
 
   return (

@@ -23,6 +23,7 @@ import {
   StyledFieldTitleIcon,
 } from "./ExpressionWidget.styled";
 
+// XXX: https://www.notion.so/metabase/Tech-Remove-Metabase-links-outside-of-admin-settings-f88ff0fa8f574d6393c6fe5a15911b0a?pvs=4#16f30ebb3140421fb3d97c11f60f7fdb
 const EXPRESSIONS_DOCUMENTATION_URL = MetabaseSettings.docsUrl(
   "questions/query-builder/expressions",
 );

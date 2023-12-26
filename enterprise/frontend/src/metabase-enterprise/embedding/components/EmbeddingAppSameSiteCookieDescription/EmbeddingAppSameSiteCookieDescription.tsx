@@ -9,6 +9,7 @@ import { SameSiteAlert } from "./EmbeddingAppSameSiteCookieDescription.styled";
 
 export const EmbeddingAppSameSiteCookieDescription = () => {
   const docsUrl = useSelector(state =>
+    // XXX: Admin settings `/admin/settings/embedding-in-other-applications/full-app`
     getDocsUrl(state, {
       page: "embedding/interactive-embedding",
       anchor: "embedding-metabase-in-a-different-domain",

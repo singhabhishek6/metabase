@@ -143,6 +143,7 @@ const LinkToDocsOnReferencingSavedQuestionsInQueries = () => (
   <LinkToDocsContainer>
     {t`Is a question missing?`}
     <ExternalLink
+      // XXX: Super hard to verify if this UI is still showing in our app, I've asked folks on Slack and will update this later.
       href={MetabaseSettings.docsUrl(
         "questions/native-editor/referencing-saved-questions-in-queries",
       )}

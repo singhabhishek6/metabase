@@ -112,6 +112,7 @@ const getFormFieldProps = (setting?: SettingDefinition) => {
 };
 
 const getDocsLink = (): string => {
+  // XXX: Admin settings in Authentication > Google Sign-In `/admin/settings/authentication/google`
   return MetabaseSettings.docsUrl(
     "people-and-groups/google-and-ldap",
     "enabling-google-sign-in",

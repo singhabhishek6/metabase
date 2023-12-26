@@ -73,6 +73,7 @@ export const PreferencesStep = (): JSX.Element => {
       <StepDescription>
         {t`In order to help us improve Metabase, we'd like to collect certain data about product usage.`}{" "}
         <ExternalLink
+          // XXX: Setup step. So there's probably no need to hide it.
           href={Settings.docsUrl(
             "installation-and-operation/information-collection",
           )}

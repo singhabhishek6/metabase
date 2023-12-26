@@ -34,6 +34,7 @@ function FeatureDescription({ schemaName }: { schemaName: string }) {
   const docsLink = (
     <ExternalLink
       key="model-caching-link"
+      // XXX: Admin settings in `/admin/databases/2`, but we need to turn on model caching first.
       href={MetabaseSettings.docsUrl("data-modeling/models")}
     >{t`Learn more.`}</ExternalLink>
   );

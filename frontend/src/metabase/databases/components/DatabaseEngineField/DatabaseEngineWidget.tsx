@@ -244,6 +244,7 @@ const EngineEmptyState = ({ isHosted }: EngineEmptyStateProps): JSX.Element => {
         <EngineEmptyText>{jt`Don’t see your database? Check out our ${(
           <ExternalLink
             key="link"
+            // XXX: This doc seems to only appear on the initial setup, so it's fine not to hide it.
             href={MetabaseSettings.docsUrl(
               "developers-guide/partner-and-community-drivers",
             )}

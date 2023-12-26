@@ -304,6 +304,7 @@ class TagEditorParamInner extends Component<Props> {
               <p>
                 {t`There aren't any filter widgets for this type of field yet.`}{" "}
                 <Link
+                  // XXX: Likely doesn't show anymore. https://metaboat.slack.com/archives/C505ZNNH4/p1703507591532089?thread_ts=1703243785.315819&cid=C505ZNNH4
                   to={MetabaseSettings.docsUrl(
                     "questions/native-editor/sql-parameters",
                     "the-field-filter-variable-type",

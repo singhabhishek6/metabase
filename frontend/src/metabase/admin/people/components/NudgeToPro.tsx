@@ -7,6 +7,7 @@ import { NudgeCard, Description, Subtitle, ProLink } from "./NudgeToPro.styled";
 
 export const NudgeToPro = () => {
   const upgradeUrl = useSelector(state =>
+    // XXX: Admin settings
     getUpgradeUrl(state, { utm_media: "people" }),
   );
   return (

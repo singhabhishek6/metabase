@@ -136,6 +136,7 @@ export const DataPermissionsHelp = () => {
       <Text component="footer" align="center" py="1.5rem" weight={600}>
         {jt`${(
           <ExternalLink
+            // XXX: Admin settings in `/admin/permissions/data/group`
             href={MetabaseSettings.docsUrl("permissions/data")}
           >{t`Learn more`}</ExternalLink>
         )} about data permissions`}

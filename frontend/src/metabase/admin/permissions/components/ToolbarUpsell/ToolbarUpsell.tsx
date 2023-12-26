@@ -17,6 +17,7 @@ interface StateProps {
 type ToolbarUpsellProps = StateProps;
 
 const mapStateToProps = (state: State): StateProps => ({
+  // XXX: Admin settings
   upgradeUrl: getUpgradeUrl(state, { utm_media: "permissions_top" }),
 });
 
@@ -34,6 +35,7 @@ const ToolbarUpsell = ({ upgradeUrl }: ToolbarUpsellProps) => {
         )} and disable download results, control access to the data model, promote group managers, ${(
           <ExternalLink
             key="upsell-more-link"
+            // XXX: Admin settings in `/admin/permissions/data/group` OSS version
             href={MetabaseSettings.docsUrl("permissions/start")}
           >
             {t`and more`}

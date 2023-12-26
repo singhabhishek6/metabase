@@ -19,6 +19,7 @@ import {
   EducationalButton,
 } from "./NewModelOptions.styled";
 
+// XXX: https://www.notion.so/metabase/Tech-Remove-Metabase-links-outside-of-admin-settings-f88ff0fa8f574d6393c6fe5a15911b0a?pvs=4#b2827208495e43288b78b6803a6966c0
 const EDUCATIONAL_LINK = MetabaseSettings.learnUrl("data-modeling/models");
 
 interface NewModelOptionsProps {

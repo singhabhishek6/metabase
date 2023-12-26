@@ -3,6 +3,7 @@ import MetabaseSettings from "metabase/lib/settings";
 import ExternalLink from "metabase/core/components/ExternalLink";
 
 const DatabaseSshDescription = (): JSX.Element => {
+  // XXX: Admin settings in `/admin/databases/:id`
   const docsUrl = MetabaseSettings.docsUrl("databases/ssh-tunnel");
 
   return (

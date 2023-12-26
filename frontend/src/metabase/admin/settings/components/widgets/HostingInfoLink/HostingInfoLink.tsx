@@ -6,6 +6,7 @@ export interface HostingInfoLinkProps {
 
 const HostingInfoLink = ({ text }: HostingInfoLinkProps): JSX.Element => (
   <HostingLink
+    // XXX: Admin settings
     href="https://www.metabase.com/migrate/from/selfhosted?utm_source=admin-panel&utm_medium=in-app"
     target="_blank"
   >

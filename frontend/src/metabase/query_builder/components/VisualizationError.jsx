@@ -155,6 +155,7 @@ class VisualizationError extends Component {
             <QueryErrorMessage>{processedError}</QueryErrorMessage>
             {isSql && (
               <QueryErrorLink
+                // XXX: https://www.notion.so/metabase/Tech-Remove-Metabase-links-outside-of-admin-settings-f88ff0fa8f574d6393c6fe5a15911b0a?pvs=4#de789c30e5fe44b39b81f7d9b8b7bcf6
                 href={MetabaseSettings.learnUrl("debugging-sql/sql-syntax")}
               >
                 {t`Learn how to debug SQL errors`}

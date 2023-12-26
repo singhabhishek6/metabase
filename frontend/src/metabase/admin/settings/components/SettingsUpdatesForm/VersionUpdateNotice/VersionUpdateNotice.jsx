@@ -82,6 +82,7 @@ function NewVersionAvailable({ currentVersion }) {
           }
           className="Button Button--white Button--medium borderless"
           href={
+            // XXX: Admin settings `/admin/settings/updates`
             "https://www.metabase.com/docs/" +
             latestVersion +
             "/operations-guide/upgrading-metabase.html"

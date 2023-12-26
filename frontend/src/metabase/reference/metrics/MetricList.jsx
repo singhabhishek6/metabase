@@ -24,6 +24,7 @@ const emptyStateData = {
   message: t`Metrics will appear here once your admins have created some`,
   image: "app/assets/img/metrics-list",
   adminAction: t`Learn how to create metrics`,
+  // XXX: https://www.notion.so/metabase/Tech-Remove-Metabase-links-outside-of-admin-settings-f88ff0fa8f574d6393c6fe5a15911b0a?pvs=4#9cf37b48f0ad471ba820d7a38fb950c4
   adminLink: MetabaseSettings.docsUrl(
     "data-modeling/segments-and-metrics",
     "creating-a-metric",

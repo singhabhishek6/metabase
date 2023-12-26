@@ -5,6 +5,7 @@ import { StoreIcon, StoreIconRoot, StoreIconWrapper } from "./StoreLink.styled";
 const StoreLink = () => {
   return (
     <Tooltip tooltip={t`Explore paid features`}>
+      {/* XXX: Admin settings */}
       <StoreIconRoot href="https://metabase.com/upgrade">
         <StoreIconWrapper>
           <StoreIcon name="store" size={20} />

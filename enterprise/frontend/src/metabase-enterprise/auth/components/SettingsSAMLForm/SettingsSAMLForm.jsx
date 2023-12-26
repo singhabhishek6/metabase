@@ -240,6 +240,7 @@ const getAcsCustomerUrl = () => {
 };
 
 const getDocsUrl = () => {
+  // XXX: Admin settings `/admin/settings/authentication/saml`
   return MetabaseSettings.docsUrl("people-and-groups/authenticating-with-saml");
 };
 

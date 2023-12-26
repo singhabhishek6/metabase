@@ -377,6 +377,7 @@ const CustomMapFooter = connect(mapStateToProps)(function CustomMapFooter({
   return isAdmin ? (
     <Link to="/admin/settings/maps">{content}</Link>
   ) : (
+    // XXX: https://www.notion.so/metabase/Tech-Remove-Metabase-links-outside-of-admin-settings-f88ff0fa8f574d6393c6fe5a15911b0a?pvs=4#b8608548db01428bae0bbdff8dfc95af
     <ExternalLink href="https://www.metabase.com/docs/latest/configuring-metabase/custom-maps">
       {content}
     </ExternalLink>

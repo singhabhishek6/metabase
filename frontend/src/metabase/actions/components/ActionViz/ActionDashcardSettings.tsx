@@ -104,6 +104,7 @@ export function ActionDashcardSettings({
                 <ExplainerText>
                   {t`You can either ask users to enter values, or use the value of a dashboard filter.`}
                   <BrandLinkWithLeftMargin
+                    // XXX: https://www.notion.so/metabase/Tech-Remove-Metabase-links-outside-of-admin-settings-f88ff0fa8f574d6393c6fe5a15911b0a?pvs=4#420b8bd3d4374e9994b8c923f7ea9019
                     href={MetabaseSettings.docsUrl("dashboards/actions")}
                   >
                     {t`Learn more.`}

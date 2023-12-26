@@ -12,6 +12,7 @@ export const DatabaseHelpCard = ({
   className,
 }: DatabaseHelpCardProps): JSX.Element => {
   const docsUrl = useSelector(state =>
+    // XXX: Setup step. So there's probably no need to hide it.
     getDocsUrl(state, { page: "databases/connecting" }),
   );
   const isHosted = useSelector(state => getSetting(state, "is-hosted?"));
@@ -26,11 +27,17 @@ export const DatabaseHelpCard = ({
       <p>{t`See our docs for step-by-step directions on how to connect your database.`}</p>
       {isHosted && (
         <p>
-          {jt`Docs weren't enough? ${(
-            <ExternalLink key="link" href="https://www.metabase.com/help/cloud">
-              {t`Write us.`}
-            </ExternalLink>
-          )}`}
+          {jt`Docs weren't enough? ${
+            (
+              // XXX: Setup step. So there's probably no need to hide it.
+              <ExternalLink
+                key="link"
+                href="https://www.metabase.com/help/cloud"
+              >
+                {t`Write us.`}
+              </ExternalLink>
+            )
+          }`}
         </p>
       )}
     </HelpCard>

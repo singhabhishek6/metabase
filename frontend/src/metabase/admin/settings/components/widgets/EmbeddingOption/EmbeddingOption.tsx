@@ -50,6 +50,7 @@ export const StaticEmbeddingOptionCard = () => {
     <ExternalLink
       key="upgrade-link"
       href={
+        // XXX: Admin settings
         "https://www.metabase.com/pricing/?utm_source=product&utm_medium=CTA&utm_campaign=embed-settings-oss-cta"
       }
     >

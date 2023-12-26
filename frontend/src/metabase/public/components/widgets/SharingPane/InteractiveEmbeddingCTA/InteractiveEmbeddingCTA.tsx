@@ -26,6 +26,7 @@ const useCTAText = () => {
     showProBadge: true,
     description: t`Give your customers the full power of Metabase in your own app, with SSO, advanced permissions, customization, and more.`,
     linkText: t`Learn more`,
+    // XXX: Don't need to hide it since this is only for non-paid plan
     url: "https://www.metabase.com/product/embedded-analytics?utm_source=product&utm_medium=CTA&utm_campaign=embed-modal",
     target: "_blank",
   };

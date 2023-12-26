@@ -34,6 +34,7 @@ export const ApplicationPermissionsHelp = () => (
     <Text component="footer" align="center" py="1rem" weight={600}>
       {jt`${(
         <ExternalLink
+          // XXX: Admin settings in `/admin/permissions/application`
           href={MetabaseSettings.docsUrl("permissions/application")}
         >{t`Learn more`}</ExternalLink>
       )} about application permissions`}

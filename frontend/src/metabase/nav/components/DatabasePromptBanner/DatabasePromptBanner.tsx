@@ -32,6 +32,7 @@ export function DatabasePromptBanner({ location }: DatabasePromptBannerProps) {
       <Prompt>{t`Connect to your database to get the most from Metabase.`}</Prompt>
       <CallToActions>
         <GetHelpButton
+          // XXX: This already doesn't show when the customer is on whitelabeling.
           href="https://metabase.com/help/connect"
           onClickCapture={() => {
             trackDatabasePromptBannerClicked("help");

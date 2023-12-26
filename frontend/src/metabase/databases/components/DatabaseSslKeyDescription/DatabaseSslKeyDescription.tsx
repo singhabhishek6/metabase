@@ -12,6 +12,7 @@ const DatabaseSslKeyDescription = (): JSX.Element | null => {
     return null;
   }
 
+  // XXX: Admin settings in `/admin/databases/:id`
   const docsUrl = MetabaseSettings.docsUrl(
     "databases/connections/postgresql",
     "authenticate-client-certificate",

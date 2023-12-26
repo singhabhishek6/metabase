@@ -181,6 +181,7 @@ const LicenseAndBillingSettings = ({
 export default connect(
   (state: State): StateProps => ({
     settingValues: state.admin.settings.settings,
+    // XXX: License admin settings for cloud starter `/admin/settings/license`
     upgradeUrl: getUpgradeUrl(state, { utm_media: "license" }),
   }),
   {

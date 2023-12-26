@@ -25,6 +25,7 @@ export const PermissionHelpDescription = ({
   hasUpgradeNotice,
 }: PermissionHelpDescriptionProps) => {
   const upgradeUrl = useSelector(state =>
+    // XXX: Admin settings
     getUpgradeUrl(state, { utm_media: "admin_permissions" }),
   );
 

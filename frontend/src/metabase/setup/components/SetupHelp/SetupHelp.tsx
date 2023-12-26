@@ -9,6 +9,7 @@ export const SetupHelp = (): JSX.Element => {
       {t`If you feel stuck`},{" "}
       <ExternalLink
         className="link"
+        // XXX: Setup step. So there's probably no need to hide it.
         href={MetabaseSettings.docsUrl(
           "configuring-metabase/setting-up-metabase",
         )}

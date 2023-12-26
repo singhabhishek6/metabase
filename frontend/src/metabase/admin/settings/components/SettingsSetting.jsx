@@ -92,6 +92,7 @@ export default class SettingsSetting extends Component {
 }
 
 const getEnvVarDocsUrl = envName => {
+  // XXX: Admin settings in many places that use this default setting widget
   return MetabaseSettings.docsUrl(
     "configuring-metabase/environment-variables",
     envName?.toLowerCase(),

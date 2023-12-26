@@ -15,6 +15,7 @@ ModelEducationalModal.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
+// XXX: Admin settings `/admin/datamodel`
 const EDUCATION_URL = MetabaseSettings.learnUrl("getting-started/models");
 
 export function ModelEducationalModal({ isOpen, onClose }) {

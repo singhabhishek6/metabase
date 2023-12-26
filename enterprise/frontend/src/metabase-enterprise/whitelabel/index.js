@@ -93,6 +93,7 @@ if (hasPremiumFeature("whitelabel")) {
           description: (
             <p>
               {t`The Settings menu includes a Help link that goes to `}
+              {/* XXX: Admin settings */}
               <Anchor href="https://www.metabase.com/help">{t`this page`}</Anchor>
               {t` by default.`}
             </p>

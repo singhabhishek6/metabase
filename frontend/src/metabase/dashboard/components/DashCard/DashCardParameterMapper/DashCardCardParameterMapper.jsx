@@ -240,6 +240,7 @@ export function DashCardCardParameterMapper({
             {getNativeDashCardEmptyMappingText(editingParameter)}
           </NativeCardText>
           <NativeCardLink
+            // XXX: https://www.notion.so/metabase/Tech-Remove-Metabase-links-outside-of-admin-settings-f88ff0fa8f574d6393c6fe5a15911b0a?pvs=4#88b82cb524654dc7b0b92418ff218d3b
             href={MetabaseSettings.docsUrl(
               "questions/native-editor/sql-parameters",
             )}

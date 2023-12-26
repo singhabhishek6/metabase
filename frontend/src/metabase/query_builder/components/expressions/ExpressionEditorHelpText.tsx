@@ -96,6 +96,7 @@ const ExpressionEditorHelpText = ({
               {helpText.example}
             </ExampleCode>
             <DocumentationLink
+              // XXX: https://www.notion.so/metabase/Tech-Remove-Metabase-links-outside-of-admin-settings-f88ff0fa8f574d6393c6fe5a15911b0a?pvs=4#a94a9a8947134201b7a209600cc36eac
               href={MetabaseSettings.docsUrl(getHelpDocsUrl(helpText))}
               target="_blank"
               data-ignore-outside-clicks

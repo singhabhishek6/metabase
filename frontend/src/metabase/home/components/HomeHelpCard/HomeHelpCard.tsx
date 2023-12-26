@@ -9,6 +9,7 @@ export const HomeHelpCard = (): JSX.Element => {
   const cardTitleId = useUniqueId();
   const applicationName = useSelector(getApplicationName);
   return (
+    // XXX: https://www.notion.so/metabase/Tech-Remove-Metabase-links-outside-of-admin-settings-f88ff0fa8f574d6393c6fe5a15911b0a?pvs=4#d36efdf162664db8b94c5f69ad53eab5
     <CardRoot href={MetabaseSettings.learnUrl()} aria-labelledby={cardTitleId}>
       <CardIcon name="reference" />
       <CardTitle id={cardTitleId}>{t`${applicationName} tips`}</CardTitle>

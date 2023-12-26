@@ -145,6 +145,7 @@ export function FormCreator({
   const docsLink = (
     <ExternalLink
       key="learn-more"
+      // https://www.notion.so/metabase/Tech-Remove-Metabase-links-outside-of-admin-settings-f88ff0fa8f574d6393c6fe5a15911b0a?pvs=4#dbc5fc0726ed493bb217bdfdeafdd805
       href={MetabaseSettings.docsUrl("actions/custom")}
     >{t`Learn more`}</ExternalLink>
   );
