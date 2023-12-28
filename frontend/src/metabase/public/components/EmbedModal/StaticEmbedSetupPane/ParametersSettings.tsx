@@ -15,10 +15,9 @@ import type {
   EmbeddingParametersValues,
   EmbeddingDisplayOptions,
   EmbedResource,
-  EmbedType,
   EmbedResourceParameterWithValue,
 } from "../EmbedModal.types";
-import EmbedCodePane from "./EmbedCodePane";
+import { EmbedCodePane } from "./EmbedCodePane";
 import PreviewPane from "./PreviewPane";
 import {
   CODE_PREVIEW_CONTROL_OPTIONS,
@@ -33,14 +32,12 @@ export interface ParametersSettingsProps {
   resourceType: EmbedResourceType;
   resourceParameters: EmbedResourceParameter[];
 
+  initialEmbeddingParams: EmbeddingParameters | undefined;
   embeddingParams: EmbeddingParameters;
   previewParameters: EmbedResourceParameter[];
   parameterValues: EmbeddingParametersValues;
 
-  embedType: EmbedType;
-
   iframeUrl: string;
-  token: string;
   siteUrl: string;
   secretKey: string;
   params: EmbeddingParameters;
@@ -57,13 +54,12 @@ export const ParametersSettings = ({
   resource,
   resourceType,
   resourceParameters,
+  initialEmbeddingParams,
   embeddingParams,
   previewParameters,
   parameterValues,
   displayOptions,
-  embedType,
   iframeUrl,
-  token,
   siteUrl,
   secretKey,
   params,
@@ -142,9 +138,13 @@ export const ParametersSettings = ({
                         className="m0"
                         parameter={parameter}
                         parameters={valuePopulatedParameters}
-                        setValue={(value: string) =>
-                          onChangeParameterValue(parameter.id, value)
-                        }
+                        setValue={(value: string) => {
+                          onChangeParameterValue(parameter.id, value);
+
+                          if (!parameter.value && value) {
+                            onChangePane("preview");
+                          }
+                        }}
                       />
                     ))}
                   </Stack>
@@ -178,15 +178,14 @@ export const ParametersSettings = ({
           ) : activePane === "code" ? (
             <EmbedCodePane
               className="flex-full w-full"
-              embedType={embedType}
               resource={resource}
               resourceType={resourceType}
-              iframeUrl={iframeUrl}
-              token={token}
               siteUrl={siteUrl}
               secretKey={secretKey}
+              initialEmbeddingParams={initialEmbeddingParams}
               params={params}
               displayOptions={displayOptions}
+              showDiff
             />
           ) : null}
         </>

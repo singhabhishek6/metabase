@@ -1,6 +1,6 @@
 import { useState } from "react";
 import _ from "underscore";
-import { getSignedPreviewUrl, getSignedToken } from "metabase/public/lib/embed";
+import { getSignedPreviewUrl } from "metabase/public/lib/embed";
 import { getSetting } from "metabase/selectors/settings";
 import { useSelector } from "metabase/lib/redux";
 import type { ExportFormatType } from "metabase/dashboard/components/PublicLinkPopover/types";
@@ -66,8 +66,13 @@ export const EmbedModalContent = (
     // "secretKey" should always exist if embedding has been turned on, but to fix typings we add here a fallback value
     FALLBACK_SECRET_KEY;
 
+  const initialEmbeddingParams = getDefaultEmbeddingParams(
+    resource,
+    resourceParameters,
+  );
+
   const [embeddingParams, setEmbeddingParams] = useState<EmbeddingParameters>(
-    getDefaultEmbeddingParams(resource, resourceParameters),
+    initialEmbeddingParams,
   );
   const [parameterValues, setParameterValues] =
     useState<EmbeddingParametersValues>({});
@@ -145,7 +150,7 @@ export const EmbedModalContent = (
   }
 
   const hasSettingsChanges = !_.isEqual(
-    resource.embedding_params,
+    initialEmbeddingParams,
     embeddingParams,
   );
 
@@ -165,14 +170,6 @@ export const EmbedModalContent = (
           activePane={pane}
           resource={resource}
           resourceType={resourceType}
-          embedType={embedType}
-          token={getSignedToken(
-            resourceType,
-            resource.id,
-            previewParametersBySlug,
-            secretKey,
-            embeddingParams,
-          )}
           iframeUrl={getSignedPreviewUrl(
             siteUrl,
             resourceType,
@@ -189,6 +186,7 @@ export const EmbedModalContent = (
           previewParameters={previewParameters}
           parameterValues={parameterValues}
           resourceParameters={resourceParameters}
+          initialEmbeddingParams={initialEmbeddingParams}
           embeddingParams={embeddingParams}
           onChangeDisplayOptions={setDisplayOptions}
           onChangeEmbeddingParameters={setEmbeddingParams}

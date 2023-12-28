@@ -14,9 +14,8 @@ import type {
   EmbeddingParameters,
   EmbedResource,
   EmbedResourceType,
-  EmbedType,
 } from "../EmbedModal.types";
-import EmbedCodePane from "./EmbedCodePane";
+import { EmbedCodePane } from "./EmbedCodePane";
 import PreviewPane from "./PreviewPane";
 import {
   CODE_PREVIEW_CONTROL_OPTIONS,
@@ -35,15 +34,14 @@ const DEFAULT_THEME = THEME_OPTIONS[0].value;
 export interface AppearanceSettingsProps {
   activePane: ActivePreviewPane;
 
-  embedType: EmbedType;
   resource: EmbedResource;
   resourceType: EmbedResourceType;
   iframeUrl: string;
-  token: string;
   siteUrl: string;
   secretKey: string;
   params: EmbeddingParameters;
   displayOptions: EmbeddingDisplayOptions;
+  initialEmbeddingParams: EmbeddingParameters | undefined;
 
   onChangePane: (pane: ActivePreviewPane) => void;
   onChangeDisplayOptions: (displayOptions: EmbeddingDisplayOptions) => void;
@@ -51,15 +49,14 @@ export interface AppearanceSettingsProps {
 
 export const AppearanceSettings = ({
   activePane,
-  embedType,
   resource,
   resourceType,
   iframeUrl,
-  token,
   siteUrl,
   secretKey,
   params,
   displayOptions,
+  initialEmbeddingParams,
 
   onChangePane,
   onChangeDisplayOptions,
@@ -227,15 +224,14 @@ export const AppearanceSettings = ({
           ) : activePane === "code" ? (
             <EmbedCodePane
               className="flex-full w-full"
-              embedType={embedType}
               resource={resource}
               resourceType={resourceType}
-              iframeUrl={iframeUrl}
-              token={token}
               siteUrl={siteUrl}
               secretKey={secretKey}
               params={params}
               displayOptions={displayOptions}
+              showDiff
+              initialEmbeddingParams={initialEmbeddingParams}
             />
           ) : null}
         </>

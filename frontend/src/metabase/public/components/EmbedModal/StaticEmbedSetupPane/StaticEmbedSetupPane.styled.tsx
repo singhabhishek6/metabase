@@ -24,6 +24,7 @@ const PreviewAreaBlock = styled.div`
   width: 100%;
   min-width: 810px;
 
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
