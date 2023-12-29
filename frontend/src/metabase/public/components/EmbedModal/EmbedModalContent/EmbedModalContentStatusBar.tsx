@@ -58,7 +58,9 @@ export const EmbedModalContentStatusBar = ({
               successText={t`Updated`}
               failedText={t`Failed!`}
             >
-              {hasSettingsChanges ? t`Publish changes` : t`Publish`}
+              {hasSettingsChanges && isEmbeddingEnabled
+                ? t`Publish changes`
+                : t`Publish`}
             </ActionButton>
           )}
         </div>
