@@ -7,8 +7,8 @@ import { Box } from "metabase/ui";
 import * as MetabaseAnalytics from "metabase/lib/analytics";
 import { ModalContentActionIcon } from "metabase/components/ModalContent";
 import { color } from "metabase/lib/colors";
+import type { EmbedType } from "metabase/public/lib/types";
 
-import type { EmbedType } from "./EmbedModal.types";
 import { EmbedModalHeader } from "./EmbedModal.styled";
 
 interface EmbedModalProps {

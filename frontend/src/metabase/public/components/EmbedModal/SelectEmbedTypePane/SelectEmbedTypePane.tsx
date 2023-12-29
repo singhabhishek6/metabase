@@ -9,12 +9,12 @@ import { getPublicEmbedHTML } from "metabase/public/lib/code";
 import * as MetabaseAnalytics from "metabase/lib/analytics";
 import Link from "metabase/core/components/Link";
 import type { ExportFormatType } from "metabase/dashboard/components/PublicLinkPopover/types";
-
 import type {
   EmbedResource,
   EmbedResourceType,
   EmbedType,
-} from "../EmbedModal.types";
+} from "metabase/public/lib/types";
+
 import { SharingPaneActionButton } from "./SharingPaneButton/SharingPaneButton.styled";
 import { SharingPaneButton } from "./SharingPaneButton/SharingPaneButton";
 import { PublicEmbedIcon, StaticEmbedIcon } from "./icons";
@@ -40,7 +40,9 @@ export function SelectEmbedTypePane({
   getPublicUrl,
   onChangeEmbedType,
 }: SelectEmbedTypePaneProps) {
-  const iframeSource = getPublicEmbedHTML(getPublicUrl(resource));
+  const iframeSource = getPublicEmbedHTML(
+    getPublicUrl(resource) || "<iframeUrl>",
+  );
 
   const hasPublicLink = !!resource.public_uuid;
 

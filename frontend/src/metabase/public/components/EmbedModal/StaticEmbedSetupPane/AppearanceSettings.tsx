@@ -1,4 +1,5 @@
 import { jt, t } from "ttag";
+import type { ChangeEvent } from "react";
 import { Divider, SegmentedControl, Stack, Switch, Text } from "metabase/ui";
 import { useSelector } from "metabase/lib/redux";
 import { getDocsUrl, getSetting } from "metabase/selectors/settings";
@@ -7,14 +8,14 @@ import { PLUGIN_SELECTORS } from "metabase/plugins";
 import Select from "metabase/core/components/Select";
 import { useUniqueId } from "metabase/hooks/use-unique-id";
 import { color } from "metabase/lib/colors";
-
 import type {
-  ActivePreviewPane,
   EmbeddingDisplayOptions,
   EmbeddingParameters,
   EmbedResource,
   EmbedResourceType,
-} from "../EmbedModal.types";
+} from "metabase/public/lib/types";
+
+import type { ActivePreviewPane } from "../EmbedModal.types";
 import { EmbedCodePane } from "./EmbedCodePane";
 import PreviewPane from "./PreviewPane";
 import {
@@ -155,7 +156,7 @@ export const AppearanceSettings = ({
                     buttonProps={{
                       "aria-labelledby": fontControlLabelId,
                     }}
-                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                    onChange={(e: ChangeEvent<HTMLSelectElement>) => {
                       onChangeDisplayOptions({
                         ...displayOptions,
                         font: e.target.value,
@@ -224,13 +225,14 @@ export const AppearanceSettings = ({
           ) : activePane === "code" ? (
             <EmbedCodePane
               className="flex-full w-full"
+              showDiff
+              variant="appearance"
               resource={resource}
               resourceType={resourceType}
               siteUrl={siteUrl}
               secretKey={secretKey}
               params={params}
               displayOptions={displayOptions}
-              showDiff
               initialEmbeddingParams={initialEmbeddingParams}
             />
           ) : null}

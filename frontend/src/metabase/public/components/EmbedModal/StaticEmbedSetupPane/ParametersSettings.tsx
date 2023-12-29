@@ -1,20 +1,23 @@
 import { t } from "ttag";
+import type { ChangeEvent } from "react";
 import { useMemo } from "react";
 import { Icon } from "metabase/core/components/Icon";
 import { color } from "metabase/lib/colors";
 import Select, { Option } from "metabase/core/components/Select";
 import { Box, Divider, SegmentedControl, Stack, Text } from "metabase/ui";
 import { ParameterWidget as StaticParameterWidget } from "metabase/parameters/components/ParameterWidget";
+import type {
+  EmbeddingDisplayOptions,
+  EmbeddingParameters,
+  EmbeddingParametersValues,
+  EmbedResource,
+  EmbedResourceParameter,
+  EmbedResourceType,
+} from "metabase/public/lib/types";
 import { getValuePopulatedParameters } from "metabase-lib/parameters/utils/parameter-values";
 
 import type {
   ActivePreviewPane,
-  EmbedResourceParameter,
-  EmbedResourceType,
-  EmbeddingParameters,
-  EmbeddingParametersValues,
-  EmbeddingDisplayOptions,
-  EmbedResource,
   EmbedResourceParameterWithValue,
 } from "../EmbedModal.types";
 import { EmbedCodePane } from "./EmbedCodePane";
@@ -101,7 +104,7 @@ export const ParametersSettings = ({
                       }}
                       className="ml-auto bg-white"
                       value={embeddingParams[parameter.slug] || "disabled"}
-                      onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                      onChange={(e: ChangeEvent<HTMLSelectElement>) =>
                         onChangeEmbeddingParameters({
                           ...embeddingParams,
                           [parameter.slug]: e.target.value,
@@ -178,6 +181,8 @@ export const ParametersSettings = ({
           ) : activePane === "code" ? (
             <EmbedCodePane
               className="flex-full w-full"
+              showDiff
+              variant="parameters"
               resource={resource}
               resourceType={resourceType}
               siteUrl={siteUrl}
@@ -185,7 +190,6 @@ export const ParametersSettings = ({
               initialEmbeddingParams={initialEmbeddingParams}
               params={params}
               displayOptions={displayOptions}
-              showDiff
             />
           ) : null}
         </>
