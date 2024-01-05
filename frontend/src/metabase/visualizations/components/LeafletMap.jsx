@@ -160,13 +160,19 @@ export default class LeafletMap extends Component {
 
     if (question.isStructured()) {
       const query = question._getMLv2Query();
-      const stageIndex = 0;
+      const stageIndex = -1;
+      const filterBounds = {
+        north: bounds.getNorth(),
+        south: bounds.getSouth(),
+        west: bounds.getWest(),
+        east: bounds.getEast(),
+      };
       const updatedQuery = Lib.updateLatLonFilter(
         query,
         stageIndex,
         longitudeColumn,
         latitudeColumn,
-        bounds,
+        filterBounds,
       );
       const updatedQuestion = question._setMLv2Query(updatedQuery);
       const nextCard = updatedQuestion.card();
