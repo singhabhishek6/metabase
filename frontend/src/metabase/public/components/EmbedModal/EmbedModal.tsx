@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { useSelector } from "metabase/lib/redux";
+import { getIsPaidPlan, getSetting } from "metabase/selectors/settings";
+import { useDispatch, useSelector } from "metabase/lib/redux";
 import { getApplicationName } from "metabase/selectors/whitelabel";
 import { Icon } from "metabase/core/components/Icon";
 import Modal from "metabase/components/Modal";
 import type { WindowModalProps } from "metabase/components/Modal/WindowModal";
-import { Box, Text } from "metabase/ui";
+import { Box, Button, Text } from "metabase/ui";
+import { updateSetting } from "metabase/admin/settings/settings";
 import { EmbedTitleContainer } from "./EmbedModal.styled";
 
 export type EmbedModalStep = "application" | "legalese" | null;
@@ -49,16 +51,31 @@ export const EmbedModal = ({
     goToPreviousStep: () => void;
   }) => JSX.Element;
 } & WindowModalProps) => {
+  const hasAcceptedTerms = useSelector(state =>
+    getSetting(state, "has-accepted-embedding-terms"),
+  );
+
+  const shouldSkipLegaleseStep = hasAcceptedTerms;
+
   const [embedType, setEmbedType] = useState<EmbedModalStep>(null);
 
   const goToNextStep = () => {
-    if (embedType === null) {
+    if (embedType === null && !shouldSkipLegaleseStep) {
       setEmbedType("legalese");
-    }
-
-    if (embedType === "legalese") {
+    } else {
       setEmbedType("application");
     }
+  };
+
+  // TODO: this is purely for debugging
+  const dispatch = useDispatch();
+  const resetSetting = () => {
+    dispatch(
+      updateSetting({
+        key: "has-accepted-embedding-terms",
+        value: false,
+      }),
+    );
   };
 
   const goToPreviousStep = () => {
@@ -76,7 +93,14 @@ export const EmbedModal = ({
     <Modal
       isOpen={isOpen}
       onClose={onEmbedClose}
-      title={<EmbedTitle embedStep={embedType} onClick={goToPreviousStep} />}
+      title={
+        <Box>
+          <EmbedTitle embedStep={embedType} onClick={goToPreviousStep} />
+          <Button color="red" onClick={resetSetting}>
+            Reset
+          </Button>
+        </Box>
+      }
       fit={!isFullScreen}
       full={isFullScreen}
       formModal={false}

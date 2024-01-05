@@ -31,3 +31,9 @@
                      (merge expected-payload {"event" "embedding_disabled"})
                      :user-id (str (mt/user->id :crowberto))}]
                    (-> (snowplow-test/pop-event-data-and-user-id!)))))))))))
+
+(deftest has-accepted-embedding-terms-test
+  (testing "Check if the user needs to accept the embedding licensing terms before static embedding"
+           (is (= (mt/user-http-request) :crowberto :get 200 "setting/has-accepted-embedding-terms"))
+
+           ))

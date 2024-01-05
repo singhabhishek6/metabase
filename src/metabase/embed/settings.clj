@@ -6,7 +6,8 @@
    [metabase.models.setting :as setting :refer [defsetting]]
    [metabase.public-settings :as public-settings]
    [metabase.util.i18n :as i18n :refer [deferred-tru]]
-   [toucan2.core :as t2]))
+   [toucan2.core :as t2]
+   [metabase.util.log :as log]))
 
 (defsetting embedding-app-origin
   (deferred-tru "Allow this origin to embed the full {0} application"
@@ -30,3 +31,14 @@
                     (if new-value
                       (snowplow/track-event! ::snowplow/embedding-enabled api/*current-user-id* snowplow-payload)
                       (snowplow/track-event! ::snowplow/embedding-disabled api/*current-user-id* snowplow-payload))))))
+
+(defsetting has-accepted-embedding-terms
+  (deferred-tru "Check if OSS users have accepted embedding terms")
+  :type       :boolean
+  :default    false
+  :getter     (fn []
+  ;; console log the default value
+                (log/info "has-accepted-embedding-terms default value: " (setting/get-value-of-type :boolean :has-accepted-embedding-terms))
+                (if (not setting/get-value-of-type)
+                  (setting/set-value-of-type! :boolean :has-accepted-embedding-terms true)
+                  true)))
