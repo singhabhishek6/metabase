@@ -30,6 +30,7 @@ export const getSeriesColors = (
 };
 
 export const getSeriesDefaultDisplay = (cardDisplay: string, index: number) => {
+  console.log(">>>here", cardDisplay, index);
   if (cardDisplay === "combo") {
     return index === 0 ? "line" : "bar";
   }

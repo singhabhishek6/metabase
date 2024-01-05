@@ -9,9 +9,6 @@ import {
   ChartSettingsError,
 } from "metabase/visualizations/lib/errors";
 
-import { formatValue } from "metabase/lib/formatting";
-
-import { getComputedSettingsForSeries } from "metabase/visualizations/lib/settings/visualization";
 import {
   metricSetting,
   dimensionSetting,
@@ -26,7 +23,7 @@ import {
   getMinSize,
 } from "metabase/visualizations/shared/utils/sizes";
 import FunnelNormal from "../components/FunnelNormal";
-import FunnelBar from "../components/FunnelBar";
+import { FunnelBar } from "../components/FunnelBar";
 import LegendHeader from "../components/LegendHeader";
 
 const propTypes = {
@@ -181,51 +178,6 @@ export default class Funnel extends Component {
       useRawSeries: true,
     },
   };
-
-  static transformSeries(series) {
-    const [
-      {
-        card,
-        data: { rows, cols },
-      },
-    ] = series;
-
-    const settings = getComputedSettingsForSeries(series);
-
-    const dimensionIndex = _.findIndex(
-      cols,
-      col => col.name === settings["funnel.dimension"],
-    );
-    const metricIndex = _.findIndex(
-      cols,
-      col => col.name === settings["funnel.metric"],
-    );
-
-    if (
-      !card._transformed &&
-      series.length === 1 &&
-      rows.length > 1 &&
-      dimensionIndex >= 0 &&
-      metricIndex >= 0
-    ) {
-      return rows.map((row, index) => ({
-        card: {
-          ...card,
-          name: formatValue(row[dimensionIndex], {
-            column: cols[dimensionIndex],
-          }),
-          originalIndex: index,
-          _transformed: true,
-        },
-        data: {
-          rows: [[row[dimensionIndex], row[metricIndex]]],
-          cols: [cols[dimensionIndex], cols[metricIndex]],
-        },
-      }));
-    } else {
-      return series;
-    }
-  }
 
   render() {
     const { headerIcon, settings, showTitle } = this.props;
